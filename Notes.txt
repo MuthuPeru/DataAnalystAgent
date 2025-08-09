@@ -1,0 +1,160 @@
+1. Add logging to the code to track the execution flow and any errors that may occur.
+Missing: There is no logging for execution flow or errors. Only print statements and error handling.
+Action: Add Python logging (e.g., logging module) to main API endpoints, workflow detection, and orchestrator execution.
+
+2. Modify the detect_workflow_type function to to use a more robust method for identifying the workflow type, we should use llm prompting to determine the workflow type based on the input.
+Missing: The current detect_workflow_type uses keyword matching, not LLM-based prompting.
+Action: Integrate an LLM (e.g., OpenAI, local model) to classify workflow type from the task description.
+
+3.
+The endpoint must accept a POST request, e.g. POST https://<host>:<port>/api/ with a data analysis task description and optional attachments in the body. For example:
+curl "https://<host>:<port>/api/" -F "questions.txt=@question.txt" -F "image.png=@image.png" -F "data.csv=@data.csv"
+Partially Present: The /api/ endpoint accepts file uploads, but the code expects a single file or form data.
+Missing: Support for multiple files (e.g., questions.txt, image.png, data.csv) in one request.
+Action: Update endpoint to handle multiple files, always process questions.txt, and optionally process others.
+
+
+4. The endpoint should return a JSON response with the results of the data analysis task, including any generated code, visualizations, or insights. (syncrhonously within 3 mins)
+
+Missing: The API currently processes tasks asynchronously and returns a task ID for status polling.
+Action: Add synchronous processing for small tasks (return result within 3 minutes if possible).
+
+
+5. questions.txt will ALWAYS be sent and contain the questions. There may be zero or more additional files passed.
+Missing: The code does not enforce or expect questions.txt as a required file.
+Action: Update file handling logic to always process questions.txt and treat other files as optional.
+
+6. *These are not the final questions you’ll be evaluated on. These examples are indicative. 
+so workflows like WikipediaScrapingWorkflow, LegalDataAnalysisWorkflow are
+too specific and should be generalized to DataAnalysisWorkflow or similar. 
+Present: There are specific workflows (WikipediaScrapingWorkflow, LegalDataAnalysisWorkflow).
+Missing: Generalized workflows (e.g., DataAnalysisWorkflow) for broader use cases.
+Action: Refactor or add generalized workflows, and allow easy extension.
+
+
+7. Include workflows for multi modal usecases like image analysis, text analysis, and code generation.
+Missing: No explicit support for image analysis, multi-modal (text+image), or code generation workflows.
+Action: Add workflow classes for image analysis, text analysis, and code generation.
+
+8. Geneerated code should be in Python and should be executable.
+Missing: No guarantee that generated code is Python or executable.
+Action: Ensure code generation workflow outputs Python code and optionally validates/explains execution.
+Execute the code and return the results 
+
+7. The code should be structured to allow for easy addition of new workflows in the future.
+Present: The orchestrator is extensible, but could be improved for easier workflow addition.
+
+8. It would be good to have a test_upload.html file that can be used to test the API endpoint.
+
+9. LLM output can it be checked for validity and correctness against another LLM before moving to the next step, 
+here we can use two different LLMs to cross-verify the output. however, this is not a requirement for the initial implementation. 
+(an LLM verify the output of another LLM)
+Present: No cross-verification of LLM outputs.
+Action: Implement a validation step using a second LLM to check the correctness of outputs before proceeding.
+
+10. Add an MIT LICENSE file to the project root.
+
+
+1. I think #6 is not handled correctly, the
+Workflows like WikipediaScrapingWorkflow, LegalDataAnalysisWorkflow are
+too specific and should be generalized to DataAnalysisWorkflow or similar. 
+Present: There are specific workflows (WikipediaScrapingWorkflow, LegalDataAnalysisWorkflow).
+Missing: Generalized workflows (e.g., DataAnalysisWorkflow) for broader use cases.
+Action: Refactor or add generalized workflows, and allow easy extension.
+
+2. No Backward compatibility endpoint Needed - not needed => single_file": "/api/single-file/ (POST - backward compatibility) 
+   also remove the related code if present in test_upload.html and other test scripts.
+
+3. similar "status": "/api/tasks/{task_id}/status (GET)" is also not needed, response should be synchronous.
+   Also remove the related code if present in test_upload.html and other test scripts.  
+
+4. following parameters will not be used in the API endpoint:
+    workflow_type: Optional[str] = Form("data_analysis"),
+    business_context: Optional[str] = Form(None),
+    sync_processing: Optional[bool] = Form(False, description="Process synchronously if True")
+
+   Instead, the endpoint will accept:
+   - "questions.txt" as a required file
+   - Optional additional files like "image.png", "data.csv"
+    task_description: this will be nothing but the content of questions.txt file.
+    the response always needs to be synchronous, so no need for sync_processing parameter.
+
+5. there wont be andy JSON based requests so /api/analyze this Legacy endpoint for JSON-based requests is not needed.
+   Also remove the related code if present in test_upload.html and other test scripts.
+
+   
+
+    
+
+Now we need to review our code and see if webscrpping tasks are generic enough that these will work for the following examples as well :
+
+Example 1: Scrape the list of highest grossing films from Wikipedia. It is at the URL:
+===========
+https://en.wikipedia.org/wiki/List_of_highest-grossing_films
+
+Answer the following questions and respond with a JSON array of strings containing the answer.
+
+1. How many $2 bn movies were released before 2000?
+2. Which is the earliest film that grossed over $1.5 bn?
+3. What's the correlation between the Rank and Peak?
+4. Draw a scatterplot of Rank and Peak along with a dotted red regression line through it.
+   Return as a base-64 encoded data URI, `"data:image/png;base64,iVBORw0KG..."` under 100,000 bytes.
+
+Example 2:
+---------
+Scrape IMDb Ratings for Top Movies
+Scrape the top 50 movies from:
+https://www.imdb.com/chart/top
+Then:
+Extract movie name, year, rating.
+Create a histogram of IMDb ratings.
+Answer:
+What is the average rating?
+Which decade has the most top-rated movies?
+
+Example 3:
+=========
+Scrape Inflation Data from Trading Economics
+Instruction to Agent:
+Scrape inflation rate data for India from:
+👉 https://tradingeconomics.com/india/inflation-cpi
+Then:
+Plot a time series of inflation over the last 12 months.
+Answer:
+What is the current inflation rate?
+What was the highest rate in the last year?
+
+Example 4: Scrape COVID-19 Cases Data
+======
+Instruction to Agent:
+Scrape the table from:
+👉 https://www.worldometers.info/coronavirus/
+Then:
+Extract top 20 countries by total cases.
+Plot total cases vs. deaths (scatter plot).
+Answer:
+Which country has the highest death-to-case ratio?
+What's the global average recovery rate?
+
+Example 5: Scrape Cricket Stats from ESPN Cricinfo
+Instruction to Agent:
+Scrape top 10 batsmen from:
+👉 https://stats.espncricinfo.com/ci/content/records/
+Then:
+Extract player name, country, total runs, average.
+Plot total runs vs batting average.
+Answer:
+Who has the highest average among players with over 8000 runs?
+Which country has the most players in top 10?
+
+
+The system needs to use LLM prompting to make web scraping more generic. 
+Analyzes table structure - Examines table dimensions, column names, and sample data
+Understands context - Uses the task description to determine relevance
+Scores tables generically - Provides reasoning for table selection without hardcoded patterns
+Returns selection - Identifies the best table index with confidence score
+
+
+Add a utility function to extract keywords/entities from the task description.
+Inject these keywords into the LLM prompts for table selection, header detection, column selection, cleaning, and visualization.
+Ensure all prompts reference these dynamic keywords, making the logic and prompts generic for any use case.

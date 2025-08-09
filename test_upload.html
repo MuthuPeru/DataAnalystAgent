@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Data Analysis API - Multiple File Upload Test</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: "Segoe UI", Tahoma, sans-serif;
+            background: linear-gradient(135deg, #e3f2fd, #f5f7fa);
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+
+        /* Card Container */
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 14px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+            max-width: 850px;
+            margin: auto;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        h1 {
+            text-align: center;
+            color: #1976d2;
+            margin-bottom: 25px;
+        }
+
+        /* Example Info Box */
+        .example {
+            background: #f9fbfd;
+            border-left: 5px solid #1976d2;
+            padding: 15px 20px;
+            margin-bottom: 25px;
+            border-radius: 6px;
+        }
+
+        .example h3 {
+            margin: 0 0 10px;
+            color: #1565c0;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        /* Form Styles */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: 600;
+            display: block;
+            margin-bottom: 8px;
+            color: #444;
+        }
+
+        input[type="file"] {
+            background: #fff;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 6px;
+            width: 100%;
+            cursor: pointer;
+            transition: border-color 0.2s;
+        }
+
+        input[type="file"]:hover {
+            border-color: #90caf9;
+        }
+
+        small.file-info {
+            color: #777;
+            display: block;
+            margin-top: 4px;
+            font-size: 13px;
+        }
+
+        /* Submit Button */
+        .submit-btn {
+            background: linear-gradient(90deg, #1976d2, #1565c0);
+            color: white;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            width: 100%;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.3s, transform 0.1s;
+        }
+
+        .submit-btn:hover {
+            background: linear-gradient(90deg, #1565c0, #0d47a1);
+            transform: translateY(-1px);
+        }
+
+        /* Result Messages */
+        .result {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 6px;
+            display: none;
+            white-space: pre-wrap;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        .success {
+            background: #e8f5e9;
+            border-left: 5px solid #43a047;
+            color: #2e7d32;
+        }
+
+        .error {
+            background: #ffebee;
+            border-left: 5px solid #e53935;
+            color: #c62828;
+        }
+
+        .loading {
+            background: #e3f2fd;
+            border-left: 5px solid #1e88e5;
+            color: #1565c0;
+        }
+
+        pre {
+            background: #f4f6f8;
+            padding: 10px;
+            border-radius: 6px;
+            overflow-x: auto;
+            font-size: 13px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>📊 Data Analysis API - File Upload Test</h1>
+
+        <div class="example">
+            <h3>API v2.0 Requirements</h3>
+            <ul>
+                <li><strong>questions.txt</strong> - Required file containing the analysis questions</li>
+                <li><strong>Additional files</strong> - Optional files like CSV, images, etc.</li>
+                <li><strong>Synchronous processing</strong> - All requests return results immediately</li>
+            </ul>
+            <pre>curl "http://localhost:8000/api/" -F "questions_txt=@questions.txt" -F "files=@data.csv"</pre>
+        </div>
+
+        <form id="uploadForm">
+            <div class="form-group">
+                <label for="questions_txt">Questions File (Required)</label>
+                <input type="file" id="questions_txt" name="questions_txt" accept=".txt" required>
+                <small class="file-info">Must be a .txt file containing your analysis questions (filename must contain 'question')</small>
+            </div>
+
+            <div class="form-group">
+                <label for="files">Additional Files (Optional)</label>
+                <input type="file" id="files" name="files" multiple accept=".txt,.csv,.json,.png,.jpg,.jpeg">
+                <small class="file-info">Optional: CSV, images, JSON, etc.</small>
+            </div>
+
+            <button type="submit" class="submit-btn">🚀 Submit Analysis Request</button>
+        </form>
+
+        <div id="result" class="result"></div>
+
+        <div class="example">
+            <h3>Testing with curl</h3>
+            <pre># Multiple file upload (new API v2.0)
+curl "http://localhost:8000/api/" -F "questions_txt=@questions.txt" -F "files=@data.csv" -F "files=@image.png"
+
+# Single questions file only
+curl "http://localhost:8000/api/" -F "questions_txt=@questions.txt"</pre>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('uploadForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const resultDiv = document.getElementById('result');
+            const formData = new FormData();
+
+            const questionsFile = document.getElementById('questions_txt').files[0];
+            const additionalFiles = document.getElementById('files').files;
+
+            if (!questionsFile) {
+                showResult('error', 'Please provide a questions.txt file (required).');
+                return;
+            }
+
+            if (!questionsFile.name.toLowerCase().includes('question') || !questionsFile.name.toLowerCase().endsWith('.txt')) {
+                showResult('error', 'Questions file must be a .txt file with "question" in the filename.');
+                return;
+            }
+
+            formData.append('questions_txt', questionsFile);
+            for (let i = 0; i < additionalFiles.length; i++) {
+                formData.append('files', additionalFiles[i]);
+            }
+
+            showResult('loading', 'Processing request synchronously...');
+
+            try {
+                const response = await fetch('/api/', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    if (data.status === 'completed') {
+                        showResult('success', `
+                            ✅ <strong>Analysis Completed!</strong><br>
+                            <strong>Task ID:</strong> ${data.task_id}<br>
+                            <strong>Workflow:</strong> ${data.workflow_type}<br>
+                            <strong>Questions File:</strong> ${data.processing_info.questions_file}<br>
+                            <strong>Additional Files:</strong> ${data.processing_info.additional_files.join(', ') || 'None'}<br>
+                            <strong>Workflow Auto-detected:</strong> ${data.processing_info.workflow_auto_detected}<br>
+                            <br>
+                            <strong>Results:</strong>
+                            <pre>${JSON.stringify(data.result, null, 2)}</pre>
+                        `);
+                    } else {
+                        showResult('error', `Unexpected status: ${data.status}`);
+                    }
+                } else {
+                    showResult('error', `Error: ${data.detail || 'Unknown error'}`);
+                }
+            } catch (error) {
+                showResult('error', `Network error: ${error.message}`);
+            }
+        });
+
+        function showResult(type, message) {
+            const resultDiv = document.getElementById('result');
+            resultDiv.className = `result ${type}`;
+            resultDiv.innerHTML = message;
+            resultDiv.style.display = 'block';
+        }
+    </script>
+</body>
+</html>

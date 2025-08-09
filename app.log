@@ -1,0 +1,239 @@
+2025-08-08 02:36:01,305 - numexpr.utils - INFO - NumExpr defaulting to 4 threads.
+2025-08-08 02:36:03,904 - chains.base - INFO - Initialized DataAnalysisChain with model gpt-4o-mini
+2025-08-08 02:36:04,435 - chains.base - INFO - Initialized CodeGenerationChain with model gpt-4o-mini
+2025-08-08 02:36:05,039 - chains.base - INFO - Initialized ReportGenerationChain with model gpt-4o-mini
+2025-08-08 02:36:05,039 - chains.workflows - INFO - LLM initialized successfully using OpenAI.
+2025-08-08 02:36:05,480 - chains.base - INFO - Initialized DataAnalysisWorkflow with model gpt-4o-mini
+2025-08-08 02:36:05,951 - chains.base - INFO - Initialized ImageAnalysisWorkflow with model gpt-4o-mini
+2025-08-08 02:36:06,426 - chains.base - INFO - Initialized DataAnalysisWorkflow with model gpt-4o-mini
+2025-08-08 02:36:06,883 - chains.base - INFO - Initialized CodeGenerationWorkflow with model gpt-4o-mini
+2025-08-08 02:36:07,316 - chains.base - INFO - Initialized ExploratoryDataAnalysisWorkflow with model gpt-4o-mini
+2025-08-08 02:36:07,827 - chains.base - INFO - Initialized PredictiveModelingWorkflow with model gpt-4o-mini
+2025-08-08 02:36:08,305 - chains.base - INFO - Initialized DataVisualizationWorkflow with model gpt-4o-mini
+2025-08-08 02:36:08,802 - chains.base - INFO - Initialized WebScrapingWorkflow with model gpt-4o-mini
+2025-08-08 02:36:09,283 - chains.base - INFO - Initialized DatabaseAnalysisWorkflow with model gpt-4o-mini
+2025-08-08 02:36:09,803 - chains.base - INFO - Initialized StatisticalAnalysisWorkflow with model gpt-4o-mini
+2025-08-08 02:36:09,804 - main - INFO - AdvancedWorkflowOrchestrator initialized successfully.
+2025-08-08 02:36:55,916 - main - INFO - Starting synchronous task aa271117-9b01-470b-be52-ac673f7cb723
+2025-08-08 02:36:55,917 - main - INFO - Processed questions.txt with 598 characters
+2025-08-08 02:36:55,918 - main - INFO - Detecting workflow type for task: Scrape the list of highest grossing films from Wikipedia. It is at the URL:
+https://en.wikipedia.or...
+2025-08-08 02:36:56,947 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-08 02:36:56,997 - main - INFO - LLM detected workflow type: multi_step_web_scraping
+2025-08-08 02:36:56,997 - main - INFO - Detected workflow: multi_step_web_scraping
+2025-08-08 02:36:56,999 - main - INFO - Task description: Scrape the list of highest grossing films from Wikipedia. It is at the URL:
+https://en.wikipedia.org/wiki/List_of_highest-grossing_films
+
+Answer the following questions and respond with a JSON arra...
+2025-08-08 02:36:56,999 - main - INFO - Workflow input prepared with 7 keys
+2025-08-08 02:36:56,999 - main - INFO - Additional files: []
+2025-08-08 02:36:57,000 - main - INFO - Processing task aa271117-9b01-470b-be52-ac673f7cb723 synchronously with workflow: multi_step_web_scraping
+2025-08-08 02:36:57,000 - main - INFO - Starting workflow execution for multi_step_web_scraping
+2025-08-08 02:36:57,000 - main - INFO - Executing workflow multi_step_web_scraping with orchestrator
+2025-08-08 02:36:57,000 - main - INFO - Available workflows: ['data_analysis', 'code_generation', 'report_generation', 'image_analysis', 'text_analysis', 'exploratory_data_analysis', 'predictive_modeling', 'data_visualization', 'web_scraping', 'multi_step_web_scraping', 'database_analysis', 'statistical_analysis']
+2025-08-08 02:36:57,000 - chains.workflows - INFO - Executing ModularWebScrapingWorkflow with enhanced format detection
+2025-08-08 02:37:01,835 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-08 02:37:06,071 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-08 02:37:06,687 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-08 02:37:07,368 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-08 02:37:08,028 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-08 02:37:09,991 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-08 02:37:14,551 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-08 02:37:19,207 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-08 02:37:20,011 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-08 02:37:23,916 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-08 02:37:23,945 - main - INFO - Workflow multi_step_web_scraping executed successfully for task aa271117-9b01-470b-be52-ac673f7cb723
+2025-08-08 02:37:23,945 - main - INFO - Result type: <class 'dict'>
+2025-08-08 02:37:23,945 - main - INFO - Result keys: ['workflow_type', 'status', 'timestamp', 'target_url', 'execution_log', 'results', 'plot_path', 'plot_base64', 'chart_type', 'image_size_bytes', 'message', 'fallback_mode']
+2025-08-08 02:37:23,945 - main - INFO - Task aa271117-9b01-470b-be52-ac673f7cb723 completed successfully
+2025-08-08 02:37:23,945 - main - INFO - Result keys: ['workflow_type', 'status', 'timestamp', 'target_url', 'execution_log', 'results', 'plot_path', 'plot_base64', 'chart_type', 'image_size_bytes', 'message', 'fallback_mode']
+2025-08-08 02:39:20,583 - main - INFO - Starting synchronous task 00789141-59e4-4096-aeda-ebb6707e51fb
+2025-08-08 02:39:20,583 - main - INFO - Processed questions.txt with 554 characters
+2025-08-08 02:39:20,583 - main - INFO - Detecting workflow type for task: Analyze customer churn patterns in our e-commerce platform.
+
+Key questions to address:
+1. What are t...
+2025-08-08 02:39:21,338 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-08 02:39:21,347 - main - INFO - LLM detected workflow type: predictive_modeling
+2025-08-08 02:39:21,347 - main - INFO - Detected workflow: predictive_modeling
+2025-08-08 02:39:21,347 - main - INFO - Task description: Analyze customer churn patterns in our e-commerce platform.
+
+Key questions to address:
+1. What are the main factors contributing to customer churn?
+2. Which customer segments have the highest churn ra...
+2025-08-08 02:39:21,347 - main - INFO - Workflow input prepared with 7 keys
+2025-08-08 02:39:21,347 - main - INFO - Additional files: []
+2025-08-08 02:39:21,347 - main - INFO - Processing task 00789141-59e4-4096-aeda-ebb6707e51fb synchronously with workflow: predictive_modeling
+2025-08-08 02:39:21,347 - main - INFO - Starting workflow execution for predictive_modeling
+2025-08-08 02:39:21,347 - main - INFO - Executing workflow predictive_modeling with orchestrator
+2025-08-08 02:39:21,347 - main - INFO - Available workflows: ['data_analysis', 'code_generation', 'report_generation', 'image_analysis', 'text_analysis', 'exploratory_data_analysis', 'predictive_modeling', 'data_visualization', 'web_scraping', 'multi_step_web_scraping', 'database_analysis', 'statistical_analysis']
+2025-08-08 02:39:41,121 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-08 02:39:41,133 - main - INFO - Workflow predictive_modeling executed successfully for task 00789141-59e4-4096-aeda-ebb6707e51fb
+2025-08-08 02:39:41,133 - main - INFO - Result type: <class 'dict'>
+2025-08-08 02:39:41,133 - main - INFO - Result keys: ['modeling_plan', 'workflow_type', 'status', 'timestamp', 'problem_type']
+2025-08-08 02:39:41,133 - main - INFO - Task 00789141-59e4-4096-aeda-ebb6707e51fb completed successfully
+2025-08-08 02:39:41,133 - main - INFO - Result keys: ['modeling_plan', 'workflow_type', 'status', 'timestamp', 'problem_type']
+2025-08-08 02:42:42,880 - main - INFO - Starting synchronous task 3a4f6f94-ae69-4e2b-90a5-0968307190ec
+2025-08-08 02:42:42,880 - main - INFO - Processed questions.txt with 252 characters
+2025-08-08 02:42:42,880 - main - INFO - Detecting workflow type for task: Scrape IMDb Ratings for Top Movies
+Scrape the top 50 movies from:
+https://www.imdb.com/chart/top
+The...
+2025-08-08 02:42:44,182 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-08 02:42:44,193 - main - INFO - LLM detected workflow type: multi_step_web_scraping
+2025-08-08 02:42:44,194 - main - INFO - Detected workflow: multi_step_web_scraping
+2025-08-08 02:42:44,194 - main - INFO - Task description: Scrape IMDb Ratings for Top Movies
+Scrape the top 50 movies from:
+https://www.imdb.com/chart/top
+Then:
+Extract movie name, year, rating.
+Create a histogram of IMDb ratings.
+Answer:
+What is the average...
+2025-08-08 02:42:44,194 - main - INFO - Workflow input prepared with 7 keys
+2025-08-08 02:42:44,195 - main - INFO - Additional files: []
+2025-08-08 02:42:44,195 - main - INFO - Processing task 3a4f6f94-ae69-4e2b-90a5-0968307190ec synchronously with workflow: multi_step_web_scraping
+2025-08-08 02:42:44,195 - main - INFO - Starting workflow execution for multi_step_web_scraping
+2025-08-08 02:42:44,195 - main - INFO - Executing workflow multi_step_web_scraping with orchestrator
+2025-08-08 02:42:44,195 - main - INFO - Available workflows: ['data_analysis', 'code_generation', 'report_generation', 'image_analysis', 'text_analysis', 'exploratory_data_analysis', 'predictive_modeling', 'data_visualization', 'web_scraping', 'multi_step_web_scraping', 'database_analysis', 'statistical_analysis']
+2025-08-08 02:42:44,196 - chains.workflows - INFO - Executing ModularWebScrapingWorkflow with enhanced format detection
+2025-08-08 02:42:50,243 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-08 02:42:53,449 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-08 02:42:53,502 - chains.workflows - ERROR - Error in step execution: Failed to extract data using LLM-guided strategy: Failed to extract from div structure: Could not parse div extraction instructions
+2025-08-08 02:42:53,502 - main - INFO - Workflow multi_step_web_scraping executed successfully for task 3a4f6f94-ae69-4e2b-90a5-0968307190ec
+2025-08-08 02:42:53,502 - main - INFO - Result type: <class 'dict'>
+2025-08-08 02:42:53,502 - main - INFO - Result keys: ['error', 'workflow_type', 'status', 'timestamp', 'execution_log', 'target_url']
+2025-08-08 02:42:53,502 - main - INFO - Task 3a4f6f94-ae69-4e2b-90a5-0968307190ec completed successfully
+2025-08-08 02:42:53,502 - main - INFO - Result keys: ['error', 'workflow_type', 'status', 'timestamp', 'execution_log', 'target_url']
+2025-08-08 02:46:21,154 - main - INFO - Starting synchronous task 30bf0002-c02e-486c-958c-d8a4fcc90391
+2025-08-08 02:46:21,154 - main - INFO - Processed questions.txt with 588 characters
+2025-08-08 02:46:21,154 - main - INFO - Detecting workflow type for task: Scrape the list of highest grossing films from Wikipedia. It is at the URL:
+https://en.wikipedia.org...
+2025-08-08 02:46:21,962 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-08 02:46:21,962 - main - INFO - LLM detected workflow type: multi_step_web_scraping
+2025-08-08 02:46:21,962 - main - INFO - Detected workflow: multi_step_web_scraping
+2025-08-08 02:46:21,962 - main - INFO - Task description: Scrape the list of highest grossing films from Wikipedia. It is at the URL:
+https://en.wikipedia.org/wiki/List_of_highest-grossing_films
+
+Answer the following questions and respond with a JSON array o...
+2025-08-08 02:46:21,962 - main - INFO - Workflow input prepared with 7 keys
+2025-08-08 02:46:21,962 - main - INFO - Additional files: []
+2025-08-08 02:46:21,962 - main - INFO - Processing task 30bf0002-c02e-486c-958c-d8a4fcc90391 synchronously with workflow: multi_step_web_scraping
+2025-08-08 02:46:21,962 - main - INFO - Starting workflow execution for multi_step_web_scraping
+2025-08-08 02:46:21,962 - main - INFO - Executing workflow multi_step_web_scraping with orchestrator
+2025-08-08 02:46:21,962 - main - INFO - Available workflows: ['data_analysis', 'code_generation', 'report_generation', 'image_analysis', 'text_analysis', 'exploratory_data_analysis', 'predictive_modeling', 'data_visualization', 'web_scraping', 'multi_step_web_scraping', 'database_analysis', 'statistical_analysis']
+2025-08-08 02:46:21,977 - chains.workflows - INFO - Executing ModularWebScrapingWorkflow with enhanced format detection
+2025-08-08 02:46:26,499 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-08 02:46:30,181 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-08 02:46:30,804 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-08 02:46:31,508 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-08 02:46:32,326 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-08 02:46:33,620 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-08 02:46:37,086 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-08 02:46:40,623 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-08 02:46:41,422 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-08 02:46:45,159 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-08 02:46:45,177 - main - INFO - Workflow multi_step_web_scraping executed successfully for task 30bf0002-c02e-486c-958c-d8a4fcc90391
+2025-08-08 02:46:45,177 - main - INFO - Result type: <class 'dict'>
+2025-08-08 02:46:45,177 - main - INFO - Result keys: ['workflow_type', 'status', 'timestamp', 'target_url', 'execution_log', 'results', 'plot_path', 'plot_base64', 'chart_type', 'image_size_bytes', 'message', 'fallback_mode']
+2025-08-08 02:46:45,177 - main - INFO - Task 30bf0002-c02e-486c-958c-d8a4fcc90391 completed successfully
+2025-08-08 02:46:45,188 - main - INFO - Result keys: ['workflow_type', 'status', 'timestamp', 'target_url', 'execution_log', 'results', 'plot_path', 'plot_base64', 'chart_type', 'image_size_bytes', 'message', 'fallback_mode']
+2025-08-08 02:49:12,660 - numexpr.utils - INFO - NumExpr defaulting to 4 threads.
+2025-08-08 02:49:13,298 - chains.base - ERROR - Failed to initialize components: Unsupported provider: openai. Choose 'openai' or 'gemini'.
+2025-08-08 02:49:13,298 - main - ERROR - Could not import or initialize workflows: Unsupported provider: openai. Choose 'openai' or 'gemini'.
+2025-08-08 02:49:13,298 - chains.base - ERROR - Failed to initialize components: Unsupported provider: openai. Choose 'openai' or 'gemini'.
+2025-08-08 02:49:13,298 - main - ERROR - Could not create minimal orchestrator: Unsupported provider: openai. Choose 'openai' or 'gemini'.
+2025-08-08 02:49:52,249 - numexpr.utils - INFO - NumExpr defaulting to 4 threads.
+2025-08-08 02:49:52,801 - chains.base - ERROR - Failed to initialize components: Unsupported provider: openai. Choose 'openai' or 'gemini'.
+2025-08-08 02:49:52,801 - main - ERROR - Could not import or initialize workflows: Unsupported provider: openai. Choose 'openai' or 'gemini'.
+2025-08-08 02:49:52,801 - chains.base - ERROR - Failed to initialize components: Unsupported provider: openai. Choose 'openai' or 'gemini'.
+2025-08-08 02:49:52,801 - main - ERROR - Could not create minimal orchestrator: Unsupported provider: openai. Choose 'openai' or 'gemini'.
+2025-08-08 02:50:46,767 - numexpr.utils - INFO - NumExpr defaulting to 4 threads.
+2025-08-08 02:50:47,456 - chains.base - ERROR - Failed to initialize components: Could not import ChatGoogleGenerativeAI. Please install langchain-google-genai.
+2025-08-08 02:50:47,456 - main - ERROR - Could not import or initialize workflows: Could not import ChatGoogleGenerativeAI. Please install langchain-google-genai.
+2025-08-08 02:50:47,456 - chains.base - ERROR - Failed to initialize components: Could not import ChatGoogleGenerativeAI. Please install langchain-google-genai.
+2025-08-08 02:50:47,456 - main - ERROR - Could not create minimal orchestrator: Could not import ChatGoogleGenerativeAI. Please install langchain-google-genai.
+2025-08-08 02:53:23,092 - numexpr.utils - INFO - NumExpr defaulting to 4 threads.
+2025-08-08 02:53:23,641 - chains.base - ERROR - Failed to initialize components: Could not import ChatGoogleGenerativeAI. Please install langchain-google-genai.
+2025-08-08 02:53:23,641 - main - ERROR - Could not import or initialize workflows: Could not import ChatGoogleGenerativeAI. Please install langchain-google-genai.
+2025-08-08 02:53:23,641 - chains.base - ERROR - Failed to initialize components: Could not import ChatGoogleGenerativeAI. Please install langchain-google-genai.
+2025-08-08 02:53:23,641 - main - ERROR - Could not create minimal orchestrator: Could not import ChatGoogleGenerativeAI. Please install langchain-google-genai.
+2025-08-08 02:54:59,259 - main - INFO - Starting synchronous task 0f10728e-4f31-4ea2-ad9b-04400e0078dd
+2025-08-08 02:54:59,259 - main - INFO - Processed questions.txt with 588 characters
+2025-08-08 02:54:59,259 - main - INFO - Detecting workflow type for task: Scrape the list of highest grossing films from Wikipedia. It is at the URL:
+https://en.wikipedia.org...
+2025-08-08 02:54:59,259 - main - WARNING - LLM not available, using fallback workflow detection
+2025-08-08 02:54:59,259 - main - INFO - Detected workflow: multi_step_web_scraping
+2025-08-08 02:54:59,259 - main - INFO - Task description: Scrape the list of highest grossing films from Wikipedia. It is at the URL:
+https://en.wikipedia.org/wiki/List_of_highest-grossing_films
+
+Answer the following questions and respond with a JSON array o...
+2025-08-08 02:54:59,259 - main - INFO - Workflow input prepared with 7 keys
+2025-08-08 02:54:59,259 - main - INFO - Additional files: []
+2025-08-08 02:54:59,273 - main - INFO - Processing task 0f10728e-4f31-4ea2-ad9b-04400e0078dd synchronously with workflow: multi_step_web_scraping
+2025-08-08 02:54:59,273 - main - INFO - Starting workflow execution for multi_step_web_scraping
+2025-08-08 02:54:59,274 - main - WARNING - No orchestrator available, cannot execute workflows
+2025-08-08 02:54:59,274 - main - INFO - Task 0f10728e-4f31-4ea2-ad9b-04400e0078dd completed successfully
+2025-08-08 02:54:59,274 - main - INFO - Result keys: ['workflow_type', 'status', 'message', 'task_analysis', 'recommendations', 'parameters_prepared', 'files_processed']
+2025-08-08 02:55:29,049 - main - INFO - Starting synchronous task be2e23f0-9844-4115-8a05-2d0a307be60f
+2025-08-08 02:55:29,049 - main - INFO - Processed questions.txt with 554 characters
+2025-08-08 02:55:29,049 - main - INFO - Detecting workflow type for task: Analyze customer churn patterns in our e-commerce platform.
+
+Key questions to address:
+1. What are t...
+2025-08-08 02:55:29,049 - main - WARNING - LLM not available, using fallback workflow detection
+2025-08-08 02:55:29,049 - main - INFO - Detected workflow: multi_step_web_scraping
+2025-08-08 02:55:29,049 - main - INFO - Task description: Analyze customer churn patterns in our e-commerce platform.
+
+Key questions to address:
+1. What are the main factors contributing to customer churn?
+2. Which customer segments have the highest churn ra...
+2025-08-08 02:55:29,049 - main - INFO - Workflow input prepared with 7 keys
+2025-08-08 02:55:29,049 - main - INFO - Additional files: []
+2025-08-08 02:55:29,057 - main - INFO - Processing task be2e23f0-9844-4115-8a05-2d0a307be60f synchronously with workflow: multi_step_web_scraping
+2025-08-08 02:55:29,057 - main - INFO - Starting workflow execution for multi_step_web_scraping
+2025-08-08 02:55:29,057 - main - WARNING - No orchestrator available, cannot execute workflows
+2025-08-08 02:55:29,057 - main - INFO - Task be2e23f0-9844-4115-8a05-2d0a307be60f completed successfully
+2025-08-08 02:55:29,060 - main - INFO - Result keys: ['workflow_type', 'status', 'message', 'task_analysis', 'recommendations', 'parameters_prepared', 'files_processed']
+2025-08-08 03:08:27,832 - numexpr.utils - INFO - NumExpr defaulting to 4 threads.
+2025-08-08 03:08:29,792 - chains.base - INFO - Initialized DataAnalysisChain with model gpt-4o-mini
+2025-08-08 03:08:30,348 - chains.base - INFO - Initialized CodeGenerationChain with model gpt-4o-mini
+2025-08-08 03:08:30,792 - chains.base - INFO - Initialized ReportGenerationChain with model gpt-4o-mini
+2025-08-08 03:08:30,792 - chains.workflows - INFO - LLM initialized successfully using OpenAI.
+2025-08-08 03:08:31,238 - chains.base - INFO - Initialized DataAnalysisWorkflow with model gpt-4o-mini
+2025-08-08 03:08:31,657 - chains.base - INFO - Initialized ImageAnalysisWorkflow with model gpt-4o-mini
+2025-08-08 03:08:32,084 - chains.base - INFO - Initialized DataAnalysisWorkflow with model gpt-4o-mini
+2025-08-08 03:08:32,521 - chains.base - INFO - Initialized CodeGenerationWorkflow with model gpt-4o-mini
+2025-08-08 03:08:33,004 - chains.base - INFO - Initialized ExploratoryDataAnalysisWorkflow with model gpt-4o-mini
+2025-08-08 03:08:33,429 - chains.base - INFO - Initialized PredictiveModelingWorkflow with model gpt-4o-mini
+2025-08-08 03:08:33,843 - chains.base - INFO - Initialized DataVisualizationWorkflow with model gpt-4o-mini
+2025-08-08 03:08:34,305 - chains.base - INFO - Initialized WebScrapingWorkflow with model gpt-4o-mini
+2025-08-08 03:08:34,744 - chains.base - INFO - Initialized DatabaseAnalysisWorkflow with model gpt-4o-mini
+2025-08-08 03:08:35,182 - chains.base - INFO - Initialized StatisticalAnalysisWorkflow with model gpt-4o-mini
+2025-08-08 03:08:35,183 - main - INFO - AdvancedWorkflowOrchestrator initialized successfully.
+2025-08-08 03:08:42,153 - main - INFO - Starting synchronous task f8bf7580-e6f2-4bb1-9385-85ae9892bd60
+2025-08-08 03:08:42,155 - main - INFO - Processed questions.txt with 554 characters
+2025-08-08 03:08:42,156 - main - INFO - Detecting workflow type for task: Analyze customer churn patterns in our e-commerce platform.
+
+Key questions to address:
+1. What are t...
+2025-08-08 03:08:43,023 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-08 03:08:43,072 - main - INFO - LLM detected workflow type: predictive_modeling
+2025-08-08 03:08:43,072 - main - INFO - Detected workflow: predictive_modeling
+2025-08-08 03:08:43,073 - main - INFO - Task description: Analyze customer churn patterns in our e-commerce platform.
+
+Key questions to address:
+1. What are the main factors contributing to customer churn?
+2. Which customer segments have the highest churn ra...
+2025-08-08 03:08:43,073 - main - INFO - Workflow input prepared with 7 keys
+2025-08-08 03:08:43,073 - main - INFO - Additional files: []
+2025-08-08 03:08:43,073 - main - INFO - Processing task f8bf7580-e6f2-4bb1-9385-85ae9892bd60 synchronously with workflow: predictive_modeling
+2025-08-08 03:08:43,073 - main - INFO - Starting workflow execution for predictive_modeling
+2025-08-08 03:08:43,073 - main - INFO - Executing workflow predictive_modeling with orchestrator
+2025-08-08 03:08:43,073 - main - INFO - Available workflows: ['data_analysis', 'code_generation', 'report_generation', 'image_analysis', 'text_analysis', 'exploratory_data_analysis', 'predictive_modeling', 'data_visualization', 'web_scraping', 'multi_step_web_scraping', 'database_analysis', 'statistical_analysis']
+2025-08-08 03:09:04,260 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2025-08-08 03:09:04,295 - main - INFO - Workflow predictive_modeling executed successfully for task f8bf7580-e6f2-4bb1-9385-85ae9892bd60
+2025-08-08 03:09:04,295 - main - INFO - Result type: <class 'dict'>
+2025-08-08 03:09:04,296 - main - INFO - Result keys: ['modeling_plan', 'workflow_type', 'status', 'timestamp', 'problem_type']
+2025-08-08 03:09:04,297 - main - INFO - Task f8bf7580-e6f2-4bb1-9385-85ae9892bd60 completed successfully
+2025-08-08 03:09:04,298 - main - INFO - Result keys: ['modeling_plan', 'workflow_type', 'status', 'timestamp', 'problem_type']
